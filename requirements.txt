@@ -1,0 +1,5 @@
+Las versiones de las librerías utilizadas en este proyecto son:
+
+pandas 3.1.0
+numpy 2.5.4
+jupyterlab 4.6.5

@@ -11,3 +11,12 @@ __pycache__/
 
 # Variables de entorno
 .env
+
+
+# Datos originales
+/F1/data/raw/*
+!/F1/data/raw/.gitkeep
+
+# Datos procesados
+/F1/data/processed/*
+!/F1/data/processed/.gitkeep
