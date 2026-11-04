@@ -1,0 +1,13 @@
+# Entornos virtuales
+.venv/
+.venv_anterior/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Archivos temporales de Jupyter
+.ipynb_checkpoints/
+
+# Variables de entorno
+.env
