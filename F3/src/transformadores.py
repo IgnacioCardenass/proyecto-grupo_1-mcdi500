@@ -1,5 +1,53 @@
 import pandas as pd
 
+
+class Transformador:
+    """Clase base para las transformaciones de datos."""
+
+    def __init__(self, columna):
+        self.columna = columna
+        self._parametros = {}
+        self._ajustado = False
+
+    def ajustar(self, datos):
+        """Aprende los parámetros necesarios."""
+
+        if self.columna not in datos.columns:
+            raise KeyError(
+                f"No existe la columna {self.columna}"
+            )
+
+        self._parametros = self.aprender(datos)
+        self._ajustado = True
+
+        return self
+
+    def transformar(self, datos):
+        """Aplica la transformación a una copia de los datos."""
+
+        if not self._ajustado:
+            raise RuntimeError(
+                "Primero debe ejecutar ajustar()"
+            )
+
+        if self.columna not in datos.columns:
+            raise KeyError(
+                f"No existe la columna {self.columna}"
+            )
+
+        return self.aplicar(datos.copy())
+
+    def aprender(self, datos):
+        raise NotImplementedError(
+            "La clase hija debe implementar aprender()"
+        )
+
+    def aplicar(self, datos):
+        raise NotImplementedError(
+            "La clase hija debe implementar aplicar()"
+        )
+
+
 class ImputadorMediana(Transformador):
     """Imputa montos faltantes utilizando la mediana en CLP."""
 
@@ -48,49 +96,3 @@ class ImputadorMediana(Transformador):
         datos["MontoFueImputado"] = faltantes.astype(int)
 
         return datos
-
-class Transformador:
-    """Clase base para las transformaciones de datos."""
-
-    def __init__(self, columna):
-        self.columna = columna
-        self._parametros = {}
-        self._ajustado = False
-
-    def ajustar(self, datos):
-        """Aprende los parámetros necesarios."""
-
-        if self.columna not in datos.columns:
-            raise KeyError(
-                f"No existe la columna {self.columna}"
-            )
-
-        self._parametros = self.aprender(datos)
-        self._ajustado = True
-
-        return self
-
-    def transformar(self, datos):
-        """Aplica la transformación a una copia de los datos."""
-
-        if not self._ajustado:
-            raise RuntimeError(
-                "Primero debe ejecutar ajustar()"
-            )
-
-        if self.columna not in datos.columns:
-            raise KeyError(
-                f"No existe la columna {self.columna}"
-            )
-
-        return self.aplicar(datos.copy())
-
-    def aprender(self, datos):
-        raise NotImplementedError(
-            "La clase hija debe implementar aprender()"
-        )
-
-    def aplicar(self, datos):
-        raise NotImplementedError(
-            "La clase hija debe implementar aplicar()"
-        )
