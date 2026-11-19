@@ -6,8 +6,8 @@ def normalizar_montos(serie: pd.Series) -> pd.Series:
     """
     Convierte montos de licitaciones a valores numéricos.
 
-    Reconoce números con punto decimal, coma decimal
-    y notación científica.
+    Reconoce números con punto decimal, coma decimal,
+    separador de miles y notación científica.
 
     Los valores no convertibles pasan a NaN.
     """
@@ -17,21 +17,23 @@ def normalizar_montos(serie: pd.Series) -> pd.Series:
 
     montos = serie.astype("string").str.strip()
 
-    # Identificar los montos que utilizan coma decimal
-    formato_coma_decimal = montos.str.fullmatch(
-        r"[+-]?\d+,\d+([eE][+-]?\d+)?",
-        na=False
+    # Separador de miles con punto y decimal con coma (ej. "1.234,5")
+    con_punto_y_coma = montos.str.contains(r"\.", na=False) & montos.str.contains(r",", na=False)
+    montos.loc[con_punto_y_coma] = (
+        montos.loc[con_punto_y_coma]
+        .str.replace(".", "", regex=False)
+        .str.replace(",", ".", regex=False)
     )
 
-    # Reemplazar la coma decimal por un punto
-    montos.loc[formato_coma_decimal] = (
-        montos.loc[formato_coma_decimal]
+    # Notación científica o números decimales con coma (ej. "1,04e+09", "123,45")
+    con_coma_decimal = montos.str.contains(r",", na=False)
+    montos.loc[con_coma_decimal] = (
+        montos.loc[con_coma_decimal]
         .str.replace(",", ".", regex=False)
     )
 
     # Convertir a valores numéricos
     return pd.to_numeric(montos, errors="coerce")
-
 
 def consolidar_por_licitacion(bloques):
     """
