@@ -20,3 +20,8 @@ __pycache__/
 # Datos procesados
 /F1/data/processed/*
 !/F1/data/processed/.gitkeep
+# Ignorar zips pesados en processed
+F2/data/processed/*.zip
+# Ignorar zips pesados y resultados antiguos de notebooks
+F2/data/processed/*.zip
+F2/notebooks/resultados_f2/
