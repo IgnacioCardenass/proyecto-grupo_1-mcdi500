@@ -4,7 +4,7 @@ Proyecto Grupo 1 — MCDI500
 
 Magíster en Ciencia de Datos e Inteligencia Artificial
 
-1. Descripción del proyecto
+1. ## Descripción del proyecto
 
 Este proyecto estudia las licitaciones públicas registradas en Chile durante el primer semestre de 2026.
 
@@ -16,7 +16,7 @@ Pregunta de investigación
 
 El análisis es descriptivo y no pretende establecer relaciones causales.
 
-2. Datos utilizados
+2. ## Datos utilizados
 
 Se trabaja con un archivo ZIP que contiene registros de licitaciones correspondientes al período enero-junio de 2026.
 
@@ -40,7 +40,7 @@ No es necesario descomprimirlo manualmente.
 
 Pendiente: registrar enlaces oficiales, fecha de descarga y hash SHA-256 del archivo. La disponibilidad del enlace provisional no constituye evidencia suficiente de procedencia oficial.
 
-3. Estructura del proyecto
+3. ## Estructura del proyecto
 
 proyecto-grupo_1-mcdi500/
 ├── F1/
@@ -65,7 +65,7 @@ La carpeta src de la raíz contiene funciones compartidas de procesamiento. La c
 
 Los archivos procesados se generan durante la ejecución y pueden no estar incluidos en GitHub.
 
-4. Requisitos del entorno
+4. ## Requisitos del entorno
 
 Entorno utilizado para el desarrollo:
 
@@ -85,44 +85,32 @@ gdown 6.5.1
 
 Las dependencias principales están declaradas en requirements.txt.
 
-5. Instalación
+5. ## Instalación
 
-Clonar el repositorio:
+# Clonar el repositorio:
 
 git clone https://github.com/IgnacioCardenass/proyecto-grupo_1-mcdi500.git
 cd proyecto-grupo_1-mcdi500
 
-Crear y activar un entorno virtual en Windows:
-
-
-
-Crear y activar un entorno virtual en Windows:
+# Crear y activar un entorno virtual en Windows:
 
 python -m venv .venv
 .venv\Scripts\activate
 
-
-
-Crear y activar un entorno virtual en Windows:
+# Crear y activar un entorno virtual en Windows:
 
 python -m venv .venv
 .venv\Scripts\activate
 
-Instalar las dependencias:
+# Instalar las dependencias:
 
 python -m pip install -r requirements.txt
 
-Verificar compatibilidad:
+# Verificar compatibilidad:
 
 python -m pip check
 
-Para reproducir específicamente los cambios de modularización que todavía no estén integrados a main, utilizar la rama correspondiente:
-
-git switch sergio/correcciones-reproducibilidad
-
-La instalación desde un clon y entorno limpios está pendiente de validación final.
-
-6. Orden de ejecución
+6. ## Orden de ejecución
 
 F1 — Definición del problema: revisar el planteamiento, alcance y objetivos del proyecto.
 
@@ -134,7 +122,7 @@ Para F2, seleccionar el intérprete del entorno configurado y utilizar Restart K
 
 El archivo original debe encontrarse en la ruta especificada en la sección 2.
 
-7. Procesamiento de Fase 2
+7. ## Procesamiento de Fase 2
 
 La Fase 2 incluye:
 
@@ -174,7 +162,7 @@ validar_estructura_zip() Separar filas con estructura incorrecta
 
 separar_registros_sospechosos() Apartar licitaciones que requieren revisión
 
-8. Archivos generados
+8. ## Archivos generados
 
 La ejecución de F2 genera archivos en:
 
@@ -200,16 +188,182 @@ Los archivos filtrados provisionales excluyen los registros apartados por las re
 
 Las matrices escaladas son demostraciones de preprocesamiento. Para evaluar modelos predictivos, las transformaciones que aprenden parámetros deben ajustarse únicamente con los datos de entrenamiento.
 
-9. Integrantes y responsabilidades
+9. ## Fase 3 — Núcleo algorítmico
+
+Objetivo
+
+La Fase 3 tiene como objetivo reorganizar el procesamiento desarrollado en F2 mediante programación estructurada y orientada a objetos, aplicando modularidad, reutilización de código, validación automatizada y análisis de eficiencia computacional.
+
+Se utiliza el mismo conjunto de licitaciones de Fase 2, sin modificar el problema de investigación.
+
+# Estructura de Fase 3
+
+F3/
+├── docs/
+│   └── bitacora.md
+├── notebooks/
+│   ├── Revision_imputacion.ipynb
+│   └── S2_F3_NucleoAlgoritmico.ipynb
+├── src/
+│   ├── carga.py
+│   ├── preparacion.py
+│   ├── transformadores.py
+│   ├── pipeline.py
+│   ├── fabrica.py
+│   └── medicion.py
+└── tests/
+    ├── conftest.py
+    ├── test_carga.py
+    ├── test_transformadores.py
+    └── test_pipeline_factory.py
+
+# Arquitectura del sistema
+
+carga.py: Carga y comprobación de archivos de datos
+
+preparacion.py: Construcción de variables derivadas y variable objetivo
+
+transformadores.py: Clases de transformación, imputación y codificación
+
+pipeline.py: Ejecución secuencial de transformaciones
+
+fabrica.py: Creación de objetos mediante el patrón Factory
+
+medicion.py: Medición y comparación de eficiencia
+
+La arquitectura se basa en una clase Transformador, de la cual heredan ImputadorMediana y CodificadorNominal.
+
+El objeto Pipeline coordina las transformaciones mediante una interfaz común de ajuste y transformación.
+
+Esta organización permite separar responsabilidades y reutilizar componentes sin concentrar todo el procesamiento dentro del notebook.
+
+# Principios de programación orientada a objetos
+
+Se aplican los siguientes principios:
+
+Abstracción: interfaz común de los transformadores.
+
+Encapsulamiento: almacenamiento interno de parámetros y estado de ajuste.
+
+Herencia: clases especializadas que derivan de Transformador.
+
+Polimorfismo: ejecución de transformadores distintos mediante los mismos métodos.
+
+Composición: el pipeline contiene y coordina una secuencia de transformadores.
+
+Se utiliza el patrón Factory para centralizar la creación de transformadores según su propósito.
+
+El proyecto emplea división funcional e iteración. No se incorpora recursividad artificial porque el pipeline procesa pasos de profundidad conocida.
+
+# Datos de entrada de F3
+
+Antes de ejecutar F3, debe haberse ejecutado F2.
+
+El notebook principal utiliza los archivos generados en:
+
+F2/data/processed/
+
+Los archivos principales son:
+
+licitaciones_filtradas_provisional.csv.gz
+
+matriz_filtrada_provisional.csv.gz
+
+registros_pendientes_revision.csv
+
+resumen_final_f2.csv
+
+Estos resultados son provisionales y conservan la trazabilidad de los registros apartados durante F2.
+
+# Validación automatizada
+
+La validación técnica utiliza pytest.
+
+Desde la raíz del repositorio, ejecutar:
+
+python -m pytest F3/tests -v
+
+Las pruebas incluyen carga de archivos, imputación, manejo de excepciones, creación de transformadores con Factory y comportamiento del Pipeline.
+
+En el entorno local MCDI500 se ejecutaron satisfactoriamente 12 pruebas, sin fallos. Este resultado debe reproducirse en los demás entornos de trabajo y después de integrar todas las ramas.
+
+La dependencia pytest debe encontrarse declarada con versión fija en requirements.txt.
+
+# Eficiencia y optimización
+
+Se compararon dos implementaciones para construir la variable EsDesierta:
+
+1. Series.apply().
+
+2. Operaciones vectorizadas de pandas.
+
+Se utilizaron muestras de 1.000, 5.000, 10.000, 20.000 y 40.000 registros.
+
+Las mediciones consideran tiempo de ejecución mediante timeit y memoria asignada registrada mediante tracemalloc.
+
+En una ejecución local, para 40.000 registros se obtuvieron los siguientes resultados:
+
+apply(): 14.012 ms, 3.13 MB
+
+Vectorizada: 1.258 ms, 0.46 MB
+
+La versión vectorizada presentó una ventaja temporal aproximada de 11.1 veces para ese tamaño.
+
+Ambas implementaciones presentan un comportamiento compatible con complejidad temporal O(n) y generan una salida de tamaño proporcional a n.
+
+La diferencia de rendimiento se relaciona principalmente con la eficiencia de las operaciones internas utilizadas por cada implementación.
+
+Las cifras son mediciones empíricas del entorno evaluado, no garantías universales de rendimiento. tracemalloc no representa necesariamente el consumo total de memoria del proceso.
+
+
+# Documentación y trazabilidad
+
+Los principales documentos de referencia son:
+
+F3/notebooks/S2_F3_NucleoAlgoritmico.ipynb: implementación, comparaciones y validaciones.
+
+F3/notebooks/Revision_imputacion.ipynb: revisión de faltantes por resultado de licitación.
+
+F3/docs/bitacora.md: registro de decisiones técnicas.
+
+F3/tests/: pruebas automatizadas.
+
+El historial de GitHub permite identificar las contribuciones técnicas individuales y las integraciones realizadas mediante Pull Requests.
+
+# Limitaciones
+
+La equivalencia con F2 se verifica utilizando los datos de referencia preparados para esta etapa.
+
+Las transformaciones que aprenden parámetros deberán ajustarse exclusivamente sobre los datos de entrenamiento cuando se realice una evaluación predictiva, para evitar fuga de información.
+
+Queda pendiente confirmar y documentar definitivamente la procedencia oficial del conjunto de datos, así como realizar la prueba final desde un clon limpio con todas las ramas integradas.
+
+10. ## Integrantes y responsabilidades
 
 Pendiente de confirmar los nombres completos y responsabilidades de los cuatro integrantes.
 
 
-10. Limitaciones y trabajo pendiente
+11. ## Limitaciones y trabajo pendiente
 
+12. ## Validación de reproducibilidad
 
+El 17 de noviembre de 2026 se realizó una prueba de reproducción local del proyecto utilizando un clon independiente del repositorio y un entorno Conda nuevo denominado `MCDI500_PRUEBA`, configurado con Python 3.13.
 
-11. Referencias
+Se instalaron las dependencias declaradas en `requirements.txt` y se comprobó su consistencia mediante `python -m pip check`, sin detectar conflictos.
+
+Para la ejecución se utilizó una copia local del dataset original, ubicada en `F1/data/raw/licitaciones_enero_junio_2026.zip`, debido a que la procedencia y el procedimiento de descarga oficial se encuentran pendientes de confirmación.
+
+Se verificó la ejecución del notebook F2 desde el entorno independiente. La prueba incluye la generación de archivos procesados en `F2/data/processed/`.
+
+**Resultados de referencia de F2:**
+- 853.499 registros estructuralmente válidos.
+- 46.567 licitaciones únicas.
+- 42 registros apartados para revisión.
+- 41.607 licitaciones conservadas provisionalmente.
+
+La reproducción en un entorno nuevo permite comprobar la instalación y ejecución local del proyecto, pero no sustituye la validación de procedencia oficial ni la prueba adicional en otro computador.
+
+13. ## Referencias
 
 Mercado Público
 
