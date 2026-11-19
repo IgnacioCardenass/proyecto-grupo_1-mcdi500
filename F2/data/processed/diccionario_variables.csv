@@ -1,0 +1,13 @@
+﻿Variable,Descripción,Tipo,Tratamiento
+CodigoExterno,Identificador de licitación,Texto,Identificación y revisión de duplicados
+Estado,Estado de la licitación,Categoría,Selección de resultados definidos
+EsDesierta,Indicador de licitación desierta,Binaria,1 = Desierta; 0 = Adjudicada
+FechaPublicacion,Fecha de publicación,Fecha,Conversión a datetime
+FechaCierre,Fecha de cierre registrada,Fecha,Conversión a datetime
+DiasPublicacionCierre,"Diferencia entre fechas, en días",Numérica,Cálculo a partir de las fechas
+MontoEstimadoNumerico,Monto estimado convertido,Numérica,Normalización de separadores decimales
+MontoEstimadoImputado,Monto con faltantes completados,Numérica,Imputación provisional por mediana
+MontoFueImputado,Indicador de monto originalmente faltante,Binaria,1 = Imputado; 0 = Observado
+sector,Sector asociado al registro,Categoría,Normalización y One-Hot Encoding
+RegionUnidad,Región de la unidad compradora,Categoría,Normalización y One-Hot Encoding
+Tipo,Tipo de licitación,Categoría,Normalización y One-Hot Encoding
