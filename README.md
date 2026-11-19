@@ -343,9 +343,156 @@ Queda pendiente confirmar y documentar definitivamente la procedencia oficial de
 Pendiente de confirmar los nombres completos y responsabilidades de los cuatro integrantes.
 
 
-11. ## Limitaciones y trabajo pendiente
+11. ## Fase 4 — Visualización y comunicación de resultados
 
-12. ## Validación de reproducibilidad
+# Objetivo
+
+La Fase 4 integra los resultados de las fases anteriores
+para caracterizar y comparar las licitaciones públicas
+adjudicadas y desiertas del primer semestre de 2026.
+
+Se desarrollan tres visualizaciones analíticas relacionadas
+con los objetivos establecidos en F1, utilizando los datos
+preparados y validados durante F2 y F3.
+
+# Archivos principales
+
+```text
+F4/
+├── F4_Analisis_Visualizaciones.ipynb
+└── resultados/
+    ├── grafico_1_estados.png
+    ├── grafico_2_tipos.png
+    └── grafico_3_plazos.png
+```
+
+# Datos utilizados
+
+El notebook utiliza:
+
+`F2/data/processed/licitaciones_filtradas_provisional.csv.gz`
+
+Se emplea el conjunto interpretable, que conserva nombres
+de categorías y unidades originales, en lugar de graficar
+directamente las variables codificadas de la matriz One-Hot.
+
+La base contiene 41.607 licitaciones y 18 columnas.
+
+Las observaciones corresponden al conjunto analítico
+conservado tras los filtros de F2. Los resultados no
+representan necesariamente todas las licitaciones públicas
+del país.
+
+# Visualizaciones desarrolladas
+
+**Gráfico 1: distribución por estado**
+
+De 41.607 licitaciones analizadas:
+- 35.622 fueron adjudicadas (85,6 %).
+- 5.985 fueron declaradas desiertas (14,4 %).
+
+La figura caracteriza la distribución general de los
+resultados observados.
+
+**Gráfico 2: porcentaje de desiertas por tipo**
+
+Se calculó la tasa de licitaciones desiertas dentro de
+cada tipo de procedimiento.
+
+Entre los tipos con al menos 30 registros:
+- E2: 40,54 % (74 licitaciones).
+- B2: 32,43 % (222 licitaciones).
+- CO: 29,97 % (654 licitaciones).
+- LP: 12,29 % (8.218 licitaciones).
+
+Los tipos con menos de 30 registros se excluyeron solo
+de la figura principal, no del conjunto de datos.
+
+La comparación es descriptiva y no permite atribuir
+causalidad al tipo de procedimiento.
+
+**Gráfico 3: plazos de publicación y cierre**
+
+Se comparó la duración de las licitaciones adjudicadas
+y desiertas utilizando diagramas de caja y puntos de
+una muestra reproducible.
+
+Ambos grupos presentan una mediana de 12 días.
+
+Las medias observadas fueron:
+- Adjudicadas: 13,98 días.
+- Desiertas: 14,60 días.
+
+Las distribuciones presentan una superposición importante.
+Por ello, estas diferencias descriptivas no permiten
+afirmar que el plazo determine el resultado del proceso.
+
+# Ejecución
+
+1. Clonar el repositorio.
+2. Crear y activar un entorno Python compatible.
+3. Instalar las dependencias:
+
+   `python -m pip install -r requirements.txt`
+
+4. Abrir el notebook:
+
+   `F4/F4_Analisis_Visualizaciones.ipynb`
+
+5. Seleccionar el kernel del entorno instalado.
+6. Ejecutar `Restart Kernel → Run All`.
+
+El notebook localiza automáticamente la raíz del proyecto,
+carga los datos procesados de F2 y ejecuta las validaciones
+y visualizaciones.
+
+# Resultados exportados
+
+Durante la ejecución se generan tres imágenes PNG en:
+
+`F4/resultados/`
+
+Los gráficos se exportan a 300 DPI para facilitar su uso
+en el informe y en la presentación audiovisual.
+
+# Validaciones y reproducibilidad
+
+Se comprueba:
+- La existencia de las columnas necesarias.
+- La coherencia de la variable objetivo.
+- La correspondencia entre totales y agrupaciones.
+- La consistencia de los plazos de publicación.
+- La existencia de los tres archivos PNG generados.
+
+El notebook de F4 se ejecutó localmente desde el inicio
+sin errores. La comprobación final debe repetirse sobre
+un clon limpio de la versión integrada en `main`.
+
+# Limitaciones
+
+- El estudio comprende enero-junio de 2026.
+- Solo se analizan los estados y registros conservados
+  tras el preprocesamiento de F2.
+- No se establecen relaciones causales.
+- Las comparaciones entre tipos no controlan
+  simultáneamente otras características.
+- La procedencia y trazabilidad de la descarga original
+  de ChileCompra deben documentarse definitivamente.
+
+# Trazabilidad
+
+El archivo `changelog.md` registra la evolución del proyecto
+entre F1 y F4, incluyendo fechas, mejoras y referencias
+a commits verificables.
+
+El historial de GitHub documenta las contribuciones
+individuales y su integración mediante ramas y Pull Requests.
+
+
+
+12. ## Limitaciones y trabajo pendiente
+
+13. ## Validación de reproducibilidad
 
 El 17 de noviembre de 2026 se realizó una prueba de reproducción local del proyecto utilizando un clon independiente del repositorio y un entorno Conda nuevo denominado `MCDI500_PRUEBA`, configurado con Python 3.13.
 
@@ -363,7 +510,7 @@ Se verificó la ejecución del notebook F2 desde el entorno independiente. La pr
 
 La reproducción en un entorno nuevo permite comprobar la instalación y ejecución local del proyecto, pero no sustituye la validación de procedencia oficial ni la prueba adicional en otro computador.
 
-13. ## Referencias
+14. ## Referencias
 
 Mercado Público
 
