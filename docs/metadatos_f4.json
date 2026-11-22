@@ -1,0 +1,15 @@
+{
+  "proyecto": "MCDI500 - Grupo N° 1",
+  "fase": "Fase 4: Comunicación y Visualización Técnica",
+  "fecha_generacion": "2026-11-22T08:18:22.979304",
+  "universo_analitico": 41607,
+  "licitaciones_desiertas": 5985,
+  "tasa_global_desierta": 0.1438,
+  "ic_wilson_95": [
+    0.1405,
+    0.1473
+  ],
+  "fuente_oficial": "Dirección de Compras y Contratación Pública (ChileCompra) - Mercado Público",
+  "periodo": "Enero - Junio 2026",
+  "sha256_dataset_crudo": "51dcfb421968c3e66111809dd76a70f7ecff16fa31915adc752285a4a5d65232"
+}
