@@ -104,10 +104,11 @@ def graficar_tasas_por_grupo(resumen, columna, titulo, tasa_global):
     return fig
 
     
+
 def graficar_montos_por_estado(datos):
     """Compara los montos CLP por estado con escala logarítmica."""
 
-    # Validar columnas necesarias
+    # Validar las columnas necesarias
     columnas = [
         "EsDesierta",
         "MontoEstimadoNumerico",
