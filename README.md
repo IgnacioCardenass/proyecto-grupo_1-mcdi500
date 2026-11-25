@@ -97,7 +97,18 @@ proyecto-grupo_1-mcdi500/
 
 El procesamiento se basa en registros de licitaciones atribuidos a **ChileCompra / Mercado Público** para enero–junio de 2026. El archivo original contiene potencialmente múltiples filas por `CodigoExterno`; F2 consolida los registros para trabajar a nivel de licitación.
 
-**Archivo original:** `F1/data/raw/licitaciones_enero_junio_2026.zip` (no versionado en Git por superar los 100 MB).  | Parámetro | Detalle de Procedencia Oficial | |---|---| | **Entidad oficial** | Dirección de Compras y Contratación Pública (ChileCompra) | | **Plataforma** | Mercado Público — Datos Abiertos | | **Portal web** | https://www.chilecompra.cl/datos-abiertos/ | | **Descarga de datos** | https://datosabiertos.chilecompra.cl/ | | **Período de licitaciones** | 01 de enero de 2026 al 30 de junio de 2026 | | **Fecha de descarga** | 18 de noviembre de 2026 | | **Huella digital (SHA-256)** | `51dcfb421968c3e66111809dd76a70f7ecff16fa31915adc752285a4a5d65232` | | **Copia de respaldo académica** | [Enlace Google Drive](https://drive.google.com/file/d/1rlzN_3OmS7v3z6Yaiw5jbf3qjrGtuFI1/view?usp=sharing) |
+**Archivo original:** `F1/data/raw/licitaciones_enero_junio_2026.zip` (no versionado en Git por superar los 100 MB).
+
+| Parámetro | Detalle de Procedencia Oficial |
+|---|---|
+| **Entidad oficial** | Dirección de Compras y Contratación Pública (ChileCompra) |
+| **Plataforma** | Mercado Público — Datos Abiertos |
+| **Portal web** | https://www.chilecompra.cl/datos-abiertos/ |
+| **Descarga de datos** | https://datosabiertos.chilecompra.cl/ |
+| **Período de licitaciones** | 01 de enero de 2026 al 30 de junio de 2026 |
+| **Fecha de descarga** | 18 de noviembre de 2026 |
+| **Huella digital (SHA-256)** | `51dcfb421968c3e66111809dd76a70f7ecff16fa31915adc752285a4a5d65232` |
+| **Copia de respaldo académica** | [Enlace Google Drive](https://drive.google.com/file/d/1rlzN_3OmS7v3z6Yaiw5jbf3qjrGtuFI1/view?usp=sharing) |
 
 **Datos preparados incluidos en el repositorio:** `F2/data/processed/`, entre ellos:
 
@@ -261,5 +272,3 @@ La colaboración se documenta en el [historial de commits](https://github.com/Ig
 - [Documentación oficial de Python](https://docs.python.org/3/).
 - [Documentación de pandas](https://pandas.pydata.org/docs/).
 - [Documentación de Matplotlib](https://matplotlib.org/stable/).
-
-**Pendiente para el informe final:** registrar la fuente oficial específica del dataset original (URL, fecha de descarga y hash SHA-256) e incorporar la bibliografía efectivamente utilizada con citas internas y formato APA 7, de acuerdo con la pauta institucional.
